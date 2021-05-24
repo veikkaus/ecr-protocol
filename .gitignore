@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# idea
+*.iml
+*.idea
+
+# npm
+false
+
+# package directories
+node_modules
+
+.vscode
+
+!/**/.gitkeep
