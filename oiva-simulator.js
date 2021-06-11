@@ -59,6 +59,10 @@ program
       'If omitted, the user will be prompted to interactively select a message.'
   })
   .option(
+    '-r, --random-ticket-id',
+    'Generate random ticket id (and share ticket ids if defined) for the message(s)'
+  )
+  .option(
     '-l, --loopback',
     'Listen for the sent message on the same (loopback) interface and print it out when received'
   )
@@ -79,7 +83,7 @@ program
     const serialPort = await openSerialPort(path)
 
     for (const message of messages) {
-      const serializedMessageString = serializedMessage(message.payloadObject)
+      const serializedMessageString = serializedMessage(message.payloadObject, options.randomTicketId)
       await serialPort.writeAsync(serializedMessageString)
       await serialPort.drainAsync()
 
