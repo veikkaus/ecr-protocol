@@ -63,6 +63,10 @@ program
     'Generate random ticket id (and share ticket ids if defined) for the message(s)'
   )
   .option(
+    '-b, --barcode-file',
+    'Create barcode PNG file for sell message(s)'
+  )
+  .option(
     '-l, --loopback',
     'Listen for the sent message on the same (loopback) interface and print it out when received'
   )
@@ -83,7 +87,7 @@ program
     const serialPort = await openSerialPort(path)
 
     for (const message of messages) {
-      const serializedMessageString = serializedMessage(message.payloadObject, options.randomTicketId)
+      const serializedMessageString = serializedMessage(message.payloadObject, options.randomTicketId, options.barcodeFile)
       await serialPort.writeAsync(serializedMessageString)
       await serialPort.drainAsync()
 
