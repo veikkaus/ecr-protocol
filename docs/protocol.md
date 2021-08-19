@@ -103,7 +103,7 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - **SideGameType** (length: 2) — Side game type identifier _(see “Field Values”)_
 - **SideGameIndex** (length: 2) — Side game index identifier _(see “Field Values”)_
 - **TransAmount** (length: 10) — Transaction amount _(see “Common Formats/Currency Amounts”)_
-- **TicketId** (length: 18–20) — Ticket identifier; the barcode data of the associated ticket
+- **TicketId** (length: 13–21) — Ticket identifier; the barcode data of the associated ticket
 - **NumShares** (length: 1–3) — Number of shares as an integer (note: not padded)
 - **ShareId{1…100}** (length: per share: same as `TicketId` above) — Share ticket identifier (see `TicketId` above) — this field is repeated for each share included in the transaction, and omitted entirely if there are none
 
