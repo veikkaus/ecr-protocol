@@ -128,38 +128,18 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 
 #### Game Indices
 
-##### General
-
-- `00`: Unknown index, or no index
-
-##### Lotto
-
-- `01`: Lotto
-- `02`: Vikinglotto
-
-##### All or Nothing (Kaikki tai ei Mitään)
-
-- `01`: Always used with AON
+- `51`: Not in use
 
 #### Side Game Types
 
-- `00`: Always used with sales transactions
-- `04`: With cash, if Jokeri is included in the original sales
-- `05`: With cash, if Lomatonni is included in the original sales
-- `06`: With cash, if both Jokeri and Lomatonni are included in the original sales
+- `51`: Not in use
+- `07`: With wager sale, if Jokeri is included
+- `08`: With wager sale, if Lomatonni is included
+- `09`: With wager sale, if both Jokeri and Lomatonni are included
 
 #### Side Game Indices
 
-- `00`: No side game is included in the original sales
-- `01`: Saturday Jokeri
-- `02`: Wednesday Jokeri
-- `03`: Friday Jokeri
-- `04`: Saturday Lomatonni
-- `05`: Wednesday Lomatonni
-- `06`: Friday Lomatonni
-- `97`: Jokeri and Lomatonni
-- `98`: More than one Lomatonni included
-- `99`: More than one Jokeri included
+- `51`: Not in use
 
 
 
