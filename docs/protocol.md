@@ -22,7 +22,7 @@ The data link between the betting terminal and the cash register is used to sync
 
 The first versions of this betting transaction interface were originally built into Veikkaus’ old “Altura” terminals. Alongside these, Veikkaus has operated old Fintoto’s “Wave” horse gaming terminals, which have their own method and protocol for providing transaction data to agents’ POS systems.
 
-Veikkaus’ Elite-S betting terminal will provide the betting transaction interface described in this document. The interface is backwards compatible with the old Altura interface in order to facilitate the distribution of the Elite-S terminal, and to avoid the need for simultaneous changes to agents’ POS systems. The protocol used in the interface includes some new transaction types, game types, and indexes.
+Veikkaus’ Elite-S betting terminal will provide the betting transaction interface described in this document. The protocol used in the interface includes some new transaction types, game types, and indexes.
 
 In the future, Veikkaus aims to provide a server-based service for synchronizing gaming transactions between Veikkaus gaming systems and agents’ POS systems. The plan is to start developing this new type of service no later than after the new terminal rollout.
 
@@ -123,8 +123,24 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 
 - `00`: Unknown type or no type.
 - `01`: Lotto
-- `30`: All Or Nothing (Kaikki tai ei mitään)
+- `02`: Vakio
+- `04`: Jokeri
+- `05`: Superkaksari
+- `06`: Tulosveto
+- `07`: Voittajaveto
+- `11`: Moniveto
+- `13`: Päivän Pari
+- `14`: Supertripla
+- `15`: Päivän Trio
+- `16`: Pahviarpa
+- `18`: Keno
+- `22`: Eurojackpot
+- `27`: Lomatonni
+- `28`: Pitkäveto
+- `30`: Kaikki tai ei mitään
+- `31`: Synttärit
 - `33`: TOTO (Horse Games)
+- `34`: Vikinglotto
 
 #### Game Indices
 
