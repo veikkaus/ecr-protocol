@@ -1,22 +1,16 @@
-
-Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
-=============================================================================
+# Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
 
 This repository contains resources for cash register system providers and/or developers who are integrating
 with Veikkaus Elite-S betting terminals.
 
-
-Protocol
------------------------------------------------------------------------------
+## Protocol
 
 Find the protocol specification of the interface between cash registers and Elite-S terminals
 in the file [docs/protocol.md].
 
 [docs/protocol.md]: docs/protocol.md
 
-
-Simulator
------------------------------------------------------------------------------
+## Simulator
 
 The Oiva simulator is a program that can simulate the Veikkaus Elite-S betting terminal by sending messages
 to a serial port.
@@ -28,7 +22,7 @@ In order to use the simulator, first install the version of Node.js specified in
 
 If using MacOs with M1 chip, before `npm install`, you need to install some dependecies. Example use brew (https://brew.sh/):
 
-    brew install pkg-config cairo pango libpng jpeg giflib librsvg
+    brew install pkg-config cairo pango libpng jpeg giflib librsvg pixman
 
 Then install the `npm` dependencies:
 
@@ -38,7 +32,6 @@ Then install the `npm` dependencies:
 
 The executable file `oiva-simulator.js` implements the command-line interface to the simulator. Run it without any
 arguments to see the usage instructions.
-
 
 ---
 
