@@ -93,12 +93,12 @@ Example: `+000107.08` for 107 Euros and 8 cents.
     - `03`: Cancel wager
     - `04`: Cash or refund
     - `05`: Sell shared ticket wager
-- **TransTime** (length: 6) — Transaction time _(see “Common Formats”)_
-- **GameType** (length: 2) — Game type identifier _(see “Field Values”)_
-- **GameIndex** (length: 2) — Game index identifier _(see “Field Values”)_
-- **SideGameType** (length: 2) — Side game type identifier _(see “Field Values”)_
-- **SideGameIndex** (length: 2) — Side game index identifier _(see “Field Values”)_
-- **TransAmount** (length: 10) — Transaction amount _(see “Common Formats/Currency Amounts”)_
+- **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
+- **GameType** (length: 2) — Game type identifier _(see [Field Values](#field-values))_
+- **GameIndex** (length: 2) — Game index identifier _(see [Field Values](#field-values))_
+- **SideGameType** (length: 2) — Side game type identifier _(see [Field Values](#field-values))_
+- **SideGameIndex** (length: 2) — Side game index identifier _(see [Field Values](#field-values))_
+- **TransAmount** (length: 10) — Transaction amount _(see [Common Formats](#common-formats))_
 - **TicketId** (length: 13–21) — Ticket identifier; the barcode data of the associated ticket
 - **NumShares** (length: 1–3) — Number of shares as an integer (note: not padded)
 - **ShareId{1…100}** (length: per share: same as `TicketId` above) — Share ticket identifier (see `TicketId` above) — this field is repeated for each share included in the transaction, and omitted entirely if there are none
@@ -107,15 +107,15 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 
 - **RecId** (length: 2) — Record type identifier
   - `08`: Instant validation
-- **TransTime** (length: 6) — Transaction time _(see “Common Formats”)_
+- **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
 - **InstantGame** (length: 3) — Instant game number (first 3 digits of the barcode on the ticket) 
-- **TransAmount** (length: 10) — Transaction amount _(see “Common Formats/Currency Amounts”)_
+- **TransAmount** (length: 10) — Transaction amount _(see [Common Formats](#common-formats))_
 
 ### Instant Activations
 
 - **RecId** (length: 2) — Record type identifier
   - `09`: Instant activation
-- **TransTime** (length: 6) — Transaction time _(see “Common Formats”)_
+- **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
 - **InstantGame** (length: 3) — Instant game number (first 3 digits of the barcode on the ticket) 
 - **PackNumber** (length: 7) — Instant pack number (next 7 digits following game number in the barcode)
 
@@ -123,8 +123,8 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 
 - **RecId** (length: 2) — Record type identifier
     - `10`: Customer session end
-- **TransTime** (length: 6) — Transaction time _(see “Common Formats”)_
-- **TotalAmount** (length: 10) — Customer session balance _(see “Common Formats/Currency Amounts”)_
+- **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
+- **TotalAmount** (length: 10) — Customer session balance _(see [Common Formats](#common-formats))_
 - **NumTrans** (length: 4) — Number of transactions (zero-padded, e.g. `0004`)
 
 ### Field Values
