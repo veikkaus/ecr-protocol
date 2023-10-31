@@ -1,8 +1,9 @@
 # Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
 
-**Changelog**
-* replaced [Instant Validations](#instant-validations) with [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation)
-* added [Identified Instant Messages](#identified-instant-messages)
+> [!IMPORTANT]
+> Changelog
+> * replaced [Instant Validations](#instant-validations) with [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation)
+> * added [Identified Instant Messages](#identified-instant-messages)
 
 **Intended audience:**
 
