@@ -1,6 +1,5 @@
-DRAFT: Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
+# Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
 with identified instants
-===============================================================================
 
 **Intended audience:**
 
@@ -12,9 +11,7 @@ Cash register system providers / developers
 - Tuomas Huuskonen (email: firstname dot lastname at `veikkaus.fi`)
 - Esamatti Liuhala (email: firstname dot lastname at `veikkaus.fi`)
 
-
-Introduction
--------------------------------------------------------------------------------
+## Introduction
 
 This document describes how to connect Veikkaus’ Elite-S betting terminal to a retailer’s cash register.
 
@@ -26,14 +23,11 @@ Veikkaus’ Elite-S betting terminal will provide the betting transaction interf
 
 In the future, Veikkaus aims to provide a server-based service for synchronizing gaming transactions between Veikkaus gaming systems and agents’ POS systems. The plan is to start developing this new type of service no later than after the new terminal rollout.
 
-
-Asynchronous Serial Communication between Terminal and Cash Register
--------------------------------------------------------------------------------
+## Asynchronous Serial Communication between Terminal and Cash Register
 
 Asynchronous serial communication is used for the transmission of data. The Elite-S retailer terminals will come equipped with serial ports complying with the RS-232 standard.
 
 There is no multipoint capability for a single connection.
-
 
 ### Cables
 
@@ -50,8 +44,7 @@ D-9  D9
 5 5 
 6 6
 
-Communication Protocol
--------------------------------------------------------------------------------
+## Communication Protocol
 
 The betting terminal transmits messages that the cash register reads. Messages from the terminal do not need to be acknowledged.
 
@@ -69,14 +62,11 @@ Connection configuration in asynchronous mode (a serial port parameter setting):
 - no (N) parity bit
 - one (1) stop bit
 
-
-Message Structures
--------------------------------------------------------------------------------
+## Message Structures
 
 Each message sent by the terminal follows the structure described in the previous chapter. This chapter specifies the fields included in different kinds of messages, as well as their formats and allowed values. The fields are listed in the order in which they appear in the messages.
 
 In order to see some examples of serialized messages, please refer to the messages included in the _Oiva simulator_ (in the same Git repository as this document).
-
 
 ### Common Formats
 
@@ -97,7 +87,6 @@ Monetary amounts are formatted:
 
 Example: `+000107.08` for 107 Euros and 8 cents.
 
-
 ### Wager sales, Cashing (validations), Refunds, Cancellations
 
 - **RecId** (length: 2) — Record type identifier
@@ -115,7 +104,7 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - **NumShares** (length: 1–3) — Number of shares as an integer (note: not padded)
 - **ShareId{1…100}** (length: per share: same as `TicketId` above) — Share ticket identifier (see `TicketId` above) — this field is repeated for each share included in the transaction, and omitted entirely if there are none
 
-### Instant validations (NOTE: This message will be replace with RecId 14 when identified instants messages are enabled from Elite settings.)
+### Instant validations (NOTE: This message will be replaced by RecId 14 when identified instant messages are enabled from Elite settings.)
 
 - **RecId** (length: 2) — Record type identifier
   - `08`: Instant validation
@@ -138,7 +127,6 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - **TransTime** (length: 6) — Transaction time _(see “Common Formats”)_
 - **TotalAmount** (length: 10) — Customer session balance _(see “Common Formats/Currency Amounts”)_
 - **NumTrans** (length: 4) — Number of transactions (zero-padded, e.g. `0004`)
-
 
 ### Field Values
 
@@ -179,8 +167,7 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 
 - `51`: Not in use
 
-Identified instant messages
--------------------------------------------------------------------------------
+## Identified instant messages
 
 Identified instant messages consist of one summary message per customer session and associated sell and cancel messages that are linked to the summary message with a SessionID. Elite terminal can be set up to print separate tickets for each identified instant sell. Summary ticket that contains all identified instant sell transactions per customer session is always printed end of session. This summary ticket contains the same SessionID in barcode as is in the summary message. It is up to the implementer to decide whether to utilize the summary feature or handle each sell message separately.
 

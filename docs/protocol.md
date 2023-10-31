@@ -1,6 +1,4 @@
-
-Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
-===============================================================================
+# Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
 
 **Intended audience:**
 
@@ -12,9 +10,7 @@ Cash register system providers / developers
 - Tuomas Huuskonen (email: firstname dot lastname at `veikkaus.fi`)
 - Esamatti Liuhala (email: firstname dot lastname at `veikkaus.fi`)
 
-
-Introduction
--------------------------------------------------------------------------------
+## Introduction
 
 This document describes how to connect Veikkaus’ Elite-S betting terminal to a retailer’s cash register.
 
@@ -26,14 +22,11 @@ Veikkaus’ Elite-S betting terminal will provide the betting transaction interf
 
 In the future, Veikkaus aims to provide a server-based service for synchronizing gaming transactions between Veikkaus gaming systems and agents’ POS systems. The plan is to start developing this new type of service no later than after the new terminal rollout.
 
-
-Asynchronous Serial Communication between Terminal and Cash Register
--------------------------------------------------------------------------------
+## Asynchronous Serial Communication between Terminal and Cash Register
 
 Asynchronous serial communication is used for the transmission of data. The Elite-S retailer terminals will come equipped with serial ports complying with the RS-232 standard.
 
 There is no multipoint capability for a single connection.
-
 
 ### Cables
 
@@ -50,8 +43,7 @@ D-9  D9
 5 5 
 6 6
 
-Communication Protocol
--------------------------------------------------------------------------------
+## Communication Protocol
 
 The betting terminal transmits messages that the cash register reads. Messages from the terminal do not need to be acknowledged.
 
@@ -69,14 +61,11 @@ Connection configuration in asynchronous mode (a serial port parameter setting):
 - no (N) parity bit
 - one (1) stop bit
 
-
-Message Structures
--------------------------------------------------------------------------------
+## Message Structures
 
 Each message sent by the terminal follows the structure described in the previous chapter. This chapter specifies the fields included in different kinds of messages, as well as their formats and allowed values. The fields are listed in the order in which they appear in the messages.
 
 In order to see some examples of serialized messages, please refer to the messages included in the _Oiva simulator_ (in the same Git repository as this document).
-
 
 ### Common Formats
 
@@ -96,7 +85,6 @@ Monetary amounts are formatted:
 - followed by leading padding zeroes, as required in order to reach a total character length of 10
 
 Example: `+000107.08` for 107 Euros and 8 cents.
-
 
 ### Wager sales, Cashing (validations), Refunds, Cancellations
 
@@ -138,7 +126,6 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - **TransTime** (length: 6) — Transaction time _(see “Common Formats”)_
 - **TotalAmount** (length: 10) — Customer session balance _(see “Common Formats/Currency Amounts”)_
 - **NumTrans** (length: 4) — Number of transactions (zero-padded, e.g. `0004`)
-
 
 ### Field Values
 
