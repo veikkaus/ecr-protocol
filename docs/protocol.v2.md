@@ -109,8 +109,8 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 
 ### Instant Validations
 
-[!WARNING]
-This message will be replaced by [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation) when identified instant messages are enabled from Elite settings.
+> [!WARNING]
+> This message will be replaced by [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation) when identified instant messages are enabled from Elite settings.
 
 - **RecId** (length: 2) — Record type identifier
   - `08`: Instant validation
