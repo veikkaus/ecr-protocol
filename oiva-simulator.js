@@ -52,12 +52,11 @@ program
   })
 
 program
-  .command('send <path> [messageNames...]')
-  .description('Send message(s) to serial port', {
-    path: 'The path of the target serial port (see the `list-ports` command)',
-    messageNames: 'The names of the messages to send (see the `list-messages` command). ' +
-      'If omitted, the user will be prompted to interactively select a message.'
-  })
+  .command('send')
+  .description('Send message(s) to serial port')
+  .argument('<path>', 'The path of the target serial port (see the `list-ports` command)')
+  .argument('[messageNames...]', 'The names of the messages to send (see the `list-messages` command). ' +
+    'If omitted, the user will be prompted to interactively select a message.')
   .option(
     '-r, --random-ticket-id',
     'Generate random ticket id (and share ticket ids if defined) for the message(s)'
