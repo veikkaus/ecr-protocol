@@ -190,7 +190,7 @@ Separate customer ticket is printed for each identified instant cancel and valid
 
 ### Identified Instant Sell
 
-- **RecId*** (length: 2) — Record type identifier
+- **RecId** (length: 2) — Record type identifier
   - `12`: Identified instant sell  
 - **SessionID** (length: 28) - Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101")
 - **TransTime** (length: 6) — Transaction time _(see "Common Formats")_
@@ -200,7 +200,7 @@ Separate customer ticket is printed for each identified instant cancel and valid
 
 ### Identified Instant Cancel
 
-- **RecId*** (length: 2) — Record type identifier  
+- **RecId** (length: 2) — Record type identifier  
   - `13`: Identified instant cancel
 - **SessionID** (length: 28) - Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101")
 - **TransTime** (length: 6) — Transaction time _(see "Common Formats")_
@@ -211,7 +211,7 @@ Separate customer ticket is printed for each identified instant cancel and valid
 
 ### Identified and Unidentified Instant Validation
 
-- **RecId*** (length: 2) — Record type identifier
+- **RecId** (length: 2) — Record type identifier
   - `14`: Identified and unidentified instant validation
 - **TransTime** (length: 6) — Transaction time _(see "Common Formats")_
 - **InstantEAN** (length: 13) - Instant product EAN
