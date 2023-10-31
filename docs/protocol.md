@@ -86,7 +86,7 @@ Monetary amounts are formatted:
 
 Example: `+000107.08` for 107 Euros and 8 cents.
 
-### Wager sales, Cashing (validations), Refunds, Cancellations
+### Wager sales, Cashing (Validations), Refunds, Cancellations
 
 - **RecId** (length: 2) — Record type identifier
     - `02`: Sell wager
@@ -103,7 +103,7 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - **NumShares** (length: 1–3) — Number of shares as an integer (note: not padded)
 - **ShareId{1…100}** (length: per share: same as `TicketId` above) — Share ticket identifier (see `TicketId` above) — this field is repeated for each share included in the transaction, and omitted entirely if there are none
 
-### Instant validations
+### Instant Validations
 
 - **RecId** (length: 2) — Record type identifier
   - `08`: Instant validation
@@ -111,7 +111,7 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - **InstantGame** (length: 3) — Instant game number (first 3 digits of the barcode on the ticket) 
 - **TransAmount** (length: 10) — Transaction amount _(see “Common Formats/Currency Amounts”)_
 
-### Instant  activations
+### Instant Activations
 
 - **RecId** (length: 2) — Record type identifier
   - `09`: Instant activation
@@ -119,7 +119,7 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - **InstantGame** (length: 3) — Instant game number (first 3 digits of the barcode on the ticket) 
 - **PackNumber** (length: 7) — Instant pack number (next 7 digits following game number in the barcode)
 
-### Emptying Shopping Cart (“End Session and Transfer transactions to cash register”)
+### Emptying Shopping Cart (“End Session and Transfer Transactions to Cash Register”)
 
 - **RecId** (length: 2) — Record type identifier
     - `10`: Customer session end

@@ -1,5 +1,8 @@
 # Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
-with identified instants
+
+**Changelog**
+* replaced [Instant Validations](#instant-validations) with [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation)
+* added [Identified Instant Messages](#identified-instant-messages)
 
 **Intended audience:**
 
@@ -87,7 +90,7 @@ Monetary amounts are formatted:
 
 Example: `+000107.08` for 107 Euros and 8 cents.
 
-### Wager sales, Cashing (validations), Refunds, Cancellations
+### Wager Sales, Cashing (Validations), Refunds, Cancellations
 
 - **RecId** (length: 2) — Record type identifier
     - `02`: Sell wager
@@ -104,7 +107,10 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - **NumShares** (length: 1–3) — Number of shares as an integer (note: not padded)
 - **ShareId{1…100}** (length: per share: same as `TicketId` above) — Share ticket identifier (see `TicketId` above) — this field is repeated for each share included in the transaction, and omitted entirely if there are none
 
-### Instant validations (NOTE: This message will be replaced by RecId 14 when identified instant messages are enabled from Elite settings.)
+### Instant Validations
+
+[!WARNING]
+This message will be replaced by [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation) when identified instant messages are enabled from Elite settings.
 
 - **RecId** (length: 2) — Record type identifier
   - `08`: Instant validation
@@ -112,7 +118,7 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - **InstantGame** (length: 3) — Instant game number (first 3 digits of the barcode on the ticket) 
 - **TransAmount** (length: 10) — Transaction amount _(see “Common Formats/Currency Amounts”)_
 
-### Instant  activations
+### Instant Activations
 
 - **RecId** (length: 2) — Record type identifier
   - `09`: Instant activation
@@ -120,7 +126,7 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - **InstantGame** (length: 3) — Instant game number (first 3 digits of the barcode on the ticket) 
 - **PackNumber** (length: 7) — Instant pack number (next 7 digits following game number in the barcode)
 
-### Emptying Shopping Cart (“End Session and Transfer transactions to cash register”)
+### Emptying Shopping Cart (“End Session and Transfer Transactions to Cash Register”)
 
 - **RecId** (length: 2) — Record type identifier
     - `10`: Customer session end
@@ -167,13 +173,13 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 
 - `51`: Not in use
 
-## Identified instant messages
+## Identified Instant Messages
 
 Identified instant messages consist of one summary message per customer session and associated sell and cancel messages that are linked to the summary message with a SessionID. Elite terminal can be set up to print separate tickets for each identified instant sell. Summary ticket that contains all identified instant sell transactions per customer session is always printed end of session. This summary ticket contains the same SessionID in barcode as is in the summary message. It is up to the implementer to decide whether to utilize the summary feature or handle each sell message separately.
 
 Separate customer ticket is printed for each identified instant cancel and validation (identified and unidentified).
 
-### Instant session summary
+### Instant Session Summary
 
 - **RecId** (length: 2) — Record type identifier
  - `11`: Instant session
@@ -182,7 +188,7 @@ Separate customer ticket is printed for each identified instant cancel and valid
 - **TransAmount** (length: 10) — Transaction amount
 - **SessionID** (length: 28) — Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101") 
 
-### Identified instant sell
+### Identified Instant Sell
 
 - **RecId*** (length: 2) — Record type identifier
   - `12`: Identified instant sell  
@@ -192,7 +198,7 @@ Separate customer ticket is printed for each identified instant cancel and valid
 - **TransAmount** (length: 10) — Transaction amount
 - **InstantId** (length: 28) — Instant identifier; the barcode data of the associated instant
 
-### Identified instant cancel
+### Identified Instant Cancel
 
 - **RecId*** (length: 2) — Record type identifier  
   - `13`: Identified instant cancel
@@ -203,7 +209,7 @@ Separate customer ticket is printed for each identified instant cancel and valid
 - **InstantId** (length: 28) — Instant identifier; the barcode data of the associated instant
 - **TicketId** (length: 21) — Instant identifier; the barcode data of the associated ticket
 
-### Identified and unidentified instant validation
+### Identified and Unidentified Instant Validation
 
 - **RecId*** (length: 2) — Record type identifier
   - `14`: Identified and unidentified instant validation
