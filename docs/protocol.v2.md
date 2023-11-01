@@ -185,8 +185,8 @@ Separate customer ticket is printed for each identified instant cancel and valid
 - **RecId** (length: 2) — Record type identifier
  - `11`: Instant session
 - **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
-- **Transactions** (length: 3) — The number of sell and cancel transactions in a session
-- **TransAmount** (length: 10) — Transaction amount _(see [Common Formats](#common-formats))_
+- **NumTrans** (length: 4) — The number of sell and cancel transactions in a session (zero-padded, e.g. `0004`)
+- **TotalAmount** (length: 10) — The sum of sell (positive) and cancel (negative) amounts in a session _(see [Common Formats](#common-formats))_
 - **SessionID** (length: 28) — Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101") 
 
 ### Identified Instant Sell
@@ -208,7 +208,7 @@ Separate customer ticket is printed for each identified instant cancel and valid
 - **InstantEAN** (length: 13) - Instant product EAN
 - **TransAmount** (length: 10) — Transaction amount _(see [Common Formats](#common-formats))_
 - **InstantId** (length: 28) — Instant identifier; the barcode data of the associated instant
-- **TicketId** (length: 21) — Instant identifier; the barcode data of the associated ticket
+- **TicketId** (length: 20) — Instant identifier; the barcode data of the associated ticket
 
 ### Identified and Unidentified Instant Validation
 
@@ -218,4 +218,4 @@ Separate customer ticket is printed for each identified instant cancel and valid
 - **InstantEAN** (length: 13) - Instant product EAN
 - **TransAmount** (length: 10) — Transaction amount _(see [Common Formats](#common-formats))_
 - **InstantId** (length: 23 or 28) — Instant identifier; the barcode data of the associated instant
-- **TicketId** (length: 21) — Instant identifier; the barcode data of the associated ticket
+- **TicketId** (length: 20) — Instant identifier; the barcode data of the associated ticket
