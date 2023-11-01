@@ -3,7 +3,7 @@
 const { SerialPort } = require('serialport')
 const { program, Option } = require('commander')
 const { openSerialPort, waitForLoopbackData, dataPresentation } = require('./lib/oiva/serial-port')
-const { oivaMessages, resolveOivaMessages, withTotal } = require('./lib/oiva/messages')
+const { oivaMessages, resolveOivaMessages } = require('./lib/oiva/messages')
 const { serializedMessage } = require('./lib/oiva/serialization')
 const { blue, green } = require('./lib/colors')
 const { timeout } = require('./lib/time')
@@ -78,14 +78,16 @@ program
     'Omit the automatically calculated "total" message sent after the specified messages'
   )
   .action(async (path, messageNames, options) => {
-    let messages = await resolveOivaMessages(messageNames, protocol(options)).catch(error => {
+    const messages = await resolveOivaMessages(
+      messageNames,
+      {
+        protocol: protocol(options),
+        total: options.total
+      }
+    ).catch(error => {
       console.error(error.toString())
       process.exit(1)
     })
-
-    if (options.total === true) {
-      messages = withTotal(messages)
-    }
 
     const serialPort = await openSerialPort(path)
 
