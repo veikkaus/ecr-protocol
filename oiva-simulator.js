@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 
-const path = require('path')
 const { SerialPort } = require('serialport')
 const { program, Option } = require('commander')
 const { openSerialPort, waitForLoopbackData, dataPresentation } = require('./lib/oiva/serial-port')
-const { oivaMessages, resolveOivaMessages, oivaCalculatedTotalMessage } = require('./lib/oiva/messages')
+const { oivaMessages, resolveOivaMessages } = require('./lib/oiva/messages')
 const { serializedMessage } = require('./lib/oiva/serialization')
 const { blue, green } = require('./lib/colors')
 const { timeout } = require('./lib/time')
+
+const optionProtocol2 = new Option('-2', 'Use protocol version 2').default(false)
+const protocol = (options) => options['2'] ? 2 : 1 
 
 program
   .description('Test utility for Veikkaus Elite-S betting terminal’s transaction interface for cash registers')
@@ -22,13 +24,14 @@ program
 program
   .command('list-messages')
   .description('List available test messages')
+  .addOption(optionProtocol2)
   .addOption(
     new Option('-f, --format [format]', 'Output format')
       .choices(['readable', 'json'])
       .default('readable')
   )
   .action(async options => {
-    const messages = oivaMessages.map(m => ({
+    const messages = oivaMessages(protocol(options)).map(m => ({
       name: m.name,
       description: m.description,
       payload: serializedMessage(m.payloadObject)
@@ -52,12 +55,12 @@ program
   })
 
 program
-  .command('send <path> [messageNames...]')
-  .description('Send message(s) to serial port', {
-    path: 'The path of the target serial port (see the `list-ports` command)',
-    messageNames: 'The names of the messages to send (see the `list-messages` command). ' +
-      'If omitted, the user will be prompted to interactively select a message.'
-  })
+  .command('send')
+  .description('Send message(s) to serial port')
+  .argument('<path>', 'The path of the target serial port (see the `list-ports` command)')
+  .argument('[messageNames...]', 'The names of the messages to send (see the `list-messages` command). ' +
+    'If omitted, the user will be prompted to interactively select a message.')
+  .addOption(optionProtocol2)
   .option(
     '-r, --random-ticket-id',
     'Generate random ticket id (and share ticket ids if defined) for the message(s)'
@@ -75,14 +78,16 @@ program
     'Omit the automatically calculated "total" message sent after the specified messages'
   )
   .action(async (path, messageNames, options) => {
-    const messages = await resolveOivaMessages(messageNames).catch(error => {
+    const messages = await resolveOivaMessages(
+      messageNames,
+      {
+        protocol: protocol(options),
+        total: options.total
+      }
+    ).catch(error => {
       console.error(error.toString())
       process.exit(1)
     })
-
-    if (options.total === true) {
-      messages.push(oivaCalculatedTotalMessage(messages))
-    }
 
     const serialPort = await openSerialPort(path)
 

@@ -1,6 +1,9 @@
-DRAFT: Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
-with identified instants
-===============================================================================
+# Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
+
+> [!IMPORTANT]
+> Changelog
+> * replaced [Instant Validations](#instant-validations) with [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation)
+> * added [Identified Instant Messages](#identified-instant-messages)
 
 **Intended audience:**
 
@@ -12,9 +15,7 @@ Cash register system providers / developers
 - Tuomas Huuskonen (email: firstname dot lastname at `veikkaus.fi`)
 - Esamatti Liuhala (email: firstname dot lastname at `veikkaus.fi`)
 
-
-Introduction
--------------------------------------------------------------------------------
+## Introduction
 
 This document describes how to connect Veikkaus’ Elite-S betting terminal to a retailer’s cash register.
 
@@ -26,14 +27,11 @@ Veikkaus’ Elite-S betting terminal will provide the betting transaction interf
 
 In the future, Veikkaus aims to provide a server-based service for synchronizing gaming transactions between Veikkaus gaming systems and agents’ POS systems. The plan is to start developing this new type of service no later than after the new terminal rollout.
 
-
-Asynchronous Serial Communication between Terminal and Cash Register
--------------------------------------------------------------------------------
+## Asynchronous Serial Communication between Terminal and Cash Register
 
 Asynchronous serial communication is used for the transmission of data. The Elite-S retailer terminals will come equipped with serial ports complying with the RS-232 standard.
 
 There is no multipoint capability for a single connection.
-
 
 ### Cables
 
@@ -50,8 +48,7 @@ D-9  D9
 5 5 
 6 6
 
-Communication Protocol
--------------------------------------------------------------------------------
+## Communication Protocol
 
 The betting terminal transmits messages that the cash register reads. Messages from the terminal do not need to be acknowledged.
 
@@ -69,14 +66,11 @@ Connection configuration in asynchronous mode (a serial port parameter setting):
 - no (N) parity bit
 - one (1) stop bit
 
-
-Message Structures
--------------------------------------------------------------------------------
+## Message Structures
 
 Each message sent by the terminal follows the structure described in the previous chapter. This chapter specifies the fields included in different kinds of messages, as well as their formats and allowed values. The fields are listed in the order in which they appear in the messages.
 
 In order to see some examples of serialized messages, please refer to the messages included in the _Oiva simulator_ (in the same Git repository as this document).
-
 
 ### Common Formats
 
@@ -97,48 +91,49 @@ Monetary amounts are formatted:
 
 Example: `+000107.08` for 107 Euros and 8 cents.
 
-
-### Wager sales, Cashing (validations), Refunds, Cancellations
+### Wager Sales, Cashing (Validations), Refunds, Cancellations
 
 - **RecId** (length: 2) — Record type identifier
     - `02`: Sell wager
     - `03`: Cancel wager
     - `04`: Cash or refund
     - `05`: Sell shared ticket wager
-- **TransTime** (length: 6) — Transaction time _(see “Common Formats”)_
-- **GameType** (length: 2) — Game type identifier _(see “Field Values”)_
-- **GameIndex** (length: 2) — Game index identifier _(see “Field Values”)_
-- **SideGameType** (length: 2) — Side game type identifier _(see “Field Values”)_
-- **SideGameIndex** (length: 2) — Side game index identifier _(see “Field Values”)_
-- **TransAmount** (length: 10) — Transaction amount _(see “Common Formats/Currency Amounts”)_
+- **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
+- **GameType** (length: 2) — Game type identifier _(see [Field Values](#field-values))_
+- **GameIndex** (length: 2) — Game index identifier _(see [Field Values](#field-values))_
+- **SideGameType** (length: 2) — Side game type identifier _(see [Field Values](#field-values))_
+- **SideGameIndex** (length: 2) — Side game index identifier _(see [Field Values](#field-values))_
+- **TransAmount** (length: 10) — Transaction amount _(see [Common Formats](#common-formats))_
 - **TicketId** (length: 13–21) — Ticket identifier; the barcode data of the associated ticket
 - **NumShares** (length: 1–3) — Number of shares as an integer (note: not padded)
 - **ShareId{1…100}** (length: per share: same as `TicketId` above) — Share ticket identifier (see `TicketId` above) — this field is repeated for each share included in the transaction, and omitted entirely if there are none
 
-### Instant validations (NOTE: This message will be replace with RecId 14 when identified instants messages are enabled from Elite settings.)
+### Instant Validations
+
+> [!WARNING]
+> This message will be replaced by [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation) when identified instant messages are enabled from Elite settings.
 
 - **RecId** (length: 2) — Record type identifier
   - `08`: Instant validation
-- **TransTime** (length: 6) — Transaction time _(see “Common Formats”)_
+- **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
 - **InstantGame** (length: 3) — Instant game number (first 3 digits of the barcode on the ticket) 
-- **TransAmount** (length: 10) — Transaction amount _(see “Common Formats/Currency Amounts”)_
+- **TransAmount** (length: 10) — Transaction amount _(see [Common Formats](#common-formats))_
 
-### Instant  activations
+### Instant Activations
 
 - **RecId** (length: 2) — Record type identifier
   - `09`: Instant activation
-- **TransTime** (length: 6) — Transaction time _(see “Common Formats”)_
+- **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
 - **InstantGame** (length: 3) — Instant game number (first 3 digits of the barcode on the ticket) 
 - **PackNumber** (length: 7) — Instant pack number (next 7 digits following game number in the barcode)
 
-### Emptying Shopping Cart (“End Session and Transfer transactions to cash register”)
+### Emptying Shopping Cart (“End Session and Transfer Transactions to Cash Register”)
 
 - **RecId** (length: 2) — Record type identifier
     - `10`: Customer session end
-- **TransTime** (length: 6) — Transaction time _(see “Common Formats”)_
-- **TotalAmount** (length: 10) — Customer session balance _(see “Common Formats/Currency Amounts”)_
+- **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
+- **TotalAmount** (length: 10) — Customer session balance _(see [Common Formats](#common-formats))_
 - **NumTrans** (length: 4) — Number of transactions (zero-padded, e.g. `0004`)
-
 
 ### Field Values
 
@@ -179,49 +174,48 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 
 - `51`: Not in use
 
-Identified instant messages
--------------------------------------------------------------------------------
+## Identified Instant Messages
 
 Identified instant messages consist of one summary message per customer session and associated sell and cancel messages that are linked to the summary message with a SessionID. Elite terminal can be set up to print separate tickets for each identified instant sell. Summary ticket that contains all identified instant sell transactions per customer session is always printed end of session. This summary ticket contains the same SessionID in barcode as is in the summary message. It is up to the implementer to decide whether to utilize the summary feature or handle each sell message separately.
 
 Separate customer ticket is printed for each identified instant cancel and validation (identified and unidentified).
 
-### Instant session summary
+### Instant Session Summary
 
 - **RecId** (length: 2) — Record type identifier
  - `11`: Instant session
-- **TransTime** (length: 6) — Transaction time
-- **Transactions** (length: 3) — The number of sell transactions in a session
-- **TransAmount** (length: 10) — Transaction amount
+- **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
+- **NumTrans** (length: 4) — The number of sell and cancel transactions in a session (zero-padded, e.g. `0004`)
+- **TotalAmount** (length: 10) — The sum of sell (positive) and cancel (negative) amounts in a session _(see [Common Formats](#common-formats))_
 - **SessionID** (length: 28) — Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101") 
 
-### Identified instant sell
+### Identified Instant Sell
 
-- **RecId*** (length: 2) — Record type identifier
+- **RecId** (length: 2) — Record type identifier
   - `12`: Identified instant sell  
 - **SessionID** (length: 28) - Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101")
-- **TransTime** (length: 6) — Transaction time _(see "Common Formats")_
+- **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
 - **InstantEAN** (length: 13) - Instant product EAN
-- **TransAmount** (length: 10) — Transaction amount
+- **TransAmount** (length: 10) — Transaction amount _(see [Common Formats](#common-formats))_
 - **InstantId** (length: 28) — Instant identifier; the barcode data of the associated instant
 
-### Identified instant cancel
+### Identified Instant Cancel
 
-- **RecId*** (length: 2) — Record type identifier  
+- **RecId** (length: 2) — Record type identifier  
   - `13`: Identified instant cancel
 - **SessionID** (length: 28) - Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101")
-- **TransTime** (length: 6) — Transaction time _(see "Common Formats")_
+- **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
 - **InstantEAN** (length: 13) - Instant product EAN
-- **TransAmount** (length: 10) — Transaction amount
+- **TransAmount** (length: 10) — Transaction amount _(see [Common Formats](#common-formats))_
 - **InstantId** (length: 28) — Instant identifier; the barcode data of the associated instant
-- **TicketId** (length: 21) — Instant identifier; the barcode data of the associated ticket
+- **TicketId** (length: 20) — Instant identifier; the barcode data of the associated ticket
 
-### Identified and unidentified instant validation
+### Identified and Unidentified Instant Validation
 
-- **RecId*** (length: 2) — Record type identifier
+- **RecId** (length: 2) — Record type identifier
   - `14`: Identified and unidentified instant validation
-- **TransTime** (length: 6) — Transaction time _(see "Common Formats")_
+- **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
 - **InstantEAN** (length: 13) - Instant product EAN
-- **TransAmount** (length: 10) — Transaction amount
+- **TransAmount** (length: 10) — Transaction amount _(see [Common Formats](#common-formats))_
 - **InstantId** (length: 23 or 28) — Instant identifier; the barcode data of the associated instant
-- **TicketId** (length: 21) — Instant identifier; the barcode data of the associated ticket
+- **TicketId** (length: 20) — Instant identifier; the barcode data of the associated ticket
