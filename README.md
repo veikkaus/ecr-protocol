@@ -1,3 +1,5 @@
+[![oiva](https://github.com/VeikkausOy/oiva/actions/workflows/main.yml/badge.svg)](https://github.com/VeikkausOy/oiva/actions/workflows/main.yml)
+
 # Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
 
 This repository contains resources for cash register system providers and/or developers who are integrating
