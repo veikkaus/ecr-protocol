@@ -4,6 +4,8 @@
 > Changelog
 > * replaced [Instant Validations](#instant-validations) with [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation)
 > * added [Identified Instant Messages](#identified-instant-messages)
+>
+> If not otherwise indicated, [messages](#message-structures) apply to both protocol v1 and v2. In Elite, the protocol in use can be selected in settings. 
 
 **Intended audience:**
 
@@ -110,8 +112,11 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 
 ### Instant Validations
 
-> [!WARNING]
-> This message will be replaced by [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation) when identified instant messages are enabled from Elite settings.
+> [!NOTE]
+> Protocol v1
+>
+> Replaced by [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation) in Protocol v2
+
 
 - **RecId** (length: 2) — Record type identifier
   - `08`: Instant validation
@@ -182,6 +187,9 @@ Separate customer ticket is printed for each identified instant cancel and valid
 
 ### Instant Session Summary
 
+> [!NOTE]
+> Protocol v2
+
 - **RecId** (length: 2) — Record type identifier
  - `11`: Instant session
 - **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
@@ -190,6 +198,9 @@ Separate customer ticket is printed for each identified instant cancel and valid
 - **SessionID** (length: 28) — Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101") 
 
 ### Identified Instant Sell
+
+> [!NOTE]
+> Protocol v2
 
 - **RecId** (length: 2) — Record type identifier
   - `12`: Identified instant sell  
@@ -201,6 +212,9 @@ Separate customer ticket is printed for each identified instant cancel and valid
 
 ### Identified Instant Cancel
 
+> [!NOTE]
+> Protocol v2
+
 - **RecId** (length: 2) — Record type identifier  
   - `13`: Identified instant cancel
 - **SessionID** (length: 28) - Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101")
@@ -211,6 +225,9 @@ Separate customer ticket is printed for each identified instant cancel and valid
 - **TicketId** (length: 20) — Instant identifier; the barcode data of the associated ticket
 
 ### Identified and Unidentified Instant Validation
+
+> [!NOTE]
+> Protocol v2
 
 - **RecId** (length: 2) — Record type identifier
   - `14`: Identified and unidentified instant validation
