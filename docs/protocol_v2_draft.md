@@ -1,1 +1,1 @@
-See [protocol.v2.md](protocol.v2.md)
+See [protocol.md](protocol.md)
