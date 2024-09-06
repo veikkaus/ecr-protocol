@@ -1,5 +1,5 @@
-
-Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
+DRAFT: Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
+with identified instants
 ===============================================================================
 
 **Intended audience:**
@@ -115,7 +115,7 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - **NumShares** (length: 1–3) — Number of shares as an integer (note: not padded)
 - **ShareId{1…100}** (length: per share: same as `TicketId` above) — Share ticket identifier (see `TicketId` above) — this field is repeated for each share included in the transaction, and omitted entirely if there are none
 
-### Instant validations
+### Instant validations (NOTE: This message will be replace with RecId 14 when identified instants messages are enabled from Elite settings.)
 
 - **RecId** (length: 2) — Record type identifier
   - `08`: Instant validation
@@ -179,15 +179,49 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 
 - `51`: Not in use
 
+Identified instant messages
+-------------------------------------------------------------------------------
 
+Identified instant messages consist of one summary message per customer session and associated sell and cancel messages that are linked to the summary message with a SessionID. Elite terminal can be set up to print separate tickets for each identified instant sell. Summary ticket that contains all identified instant sell transactions per customer session is always printed end of session. This summary ticket contains the same SessionID in barcode as is in the summary message. It is up to the implementer to decide whether to utilize the summary feature or handle each sell message separately.
 
+Separate customer ticket is printed for each identified instant cancel and validation (identified and unidentified).
 
+### Instant session summary
 
+- **RecId** (length: 2) — Record type identifier
+ - `11`: Instant session
+- **TransTime** (length: 6) — Transaction time
+- **Transactions** (length: 3) — The number of sell transactions in a session
+- **TransAmount** (length: 10) — Transaction amount
+- **SessionID** (length: 28) — Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101") 
 
+### Identified instant sell
 
+- **RecId*** (length: 2) — Record type identifier
+  - `12`: Identified instant sell  
+- **SessionID** (length: 28) - Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101")
+- **TransTime** (length: 6) — Transaction time _(see "Common Formats")_
+- **InstantEAN** (length: 13) - Instant product EAN
+- **TransAmount** (length: 10) — Transaction amount
+- **InstantId** (length: 28) — Instant identifier; the barcode data of the associated instant
 
+### Identified instant cancel
 
+- **RecId*** (length: 2) — Record type identifier  
+  - `13`: Identified instant cancel
+- **SessionID** (length: 28) - Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101")
+- **TransTime** (length: 6) — Transaction time _(see "Common Formats")_
+- **InstantEAN** (length: 13) - Instant product EAN
+- **TransAmount** (length: 10) — Transaction amount
+- **InstantId** (length: 28) — Instant identifier; the barcode data of the associated instant
+- **TicketId** (length: 21) — Instant identifier; the barcode data of the associated ticket
 
+### Identified and unidentified instant validation
 
-
-
+- **RecId*** (length: 2) — Record type identifier
+  - `14`: Identified and unidentified instant validation
+- **TransTime** (length: 6) — Transaction time _(see "Common Formats")_
+- **InstantEAN** (length: 13) - Instant product EAN
+- **TransAmount** (length: 10) — Transaction amount
+- **InstantId** (length: 23 or 28) — Instant identifier; the barcode data of the associated instant
+- **TicketId** (length: 21) — Instant identifier; the barcode data of the associated ticket

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const path = require('path')
-const SerialPort = require('serialport')
+const { SerialPort } = require('serialport')
 const { program, Option } = require('commander')
 const { openSerialPort, waitForLoopbackData, dataPresentation } = require('./lib/oiva/serial-port')
 const { oivaMessages, resolveOivaMessages, oivaCalculatedTotalMessage } = require('./lib/oiva/messages')
@@ -59,6 +59,14 @@ program
       'If omitted, the user will be prompted to interactively select a message.'
   })
   .option(
+    '-r, --random-ticket-id',
+    'Generate random ticket id (and share ticket ids if defined) for the message(s)'
+  )
+  .option(
+    '-b, --barcode-file',
+    'Create barcode PNG file for sell message(s)'
+  )
+  .option(
     '-l, --loopback',
     'Listen for the sent message on the same (loopback) interface and print it out when received'
   )
@@ -79,7 +87,7 @@ program
     const serialPort = await openSerialPort(path)
 
     for (const message of messages) {
-      const serializedMessageString = serializedMessage(message.payloadObject)
+      const serializedMessageString = serializedMessage(message.payloadObject, options.randomTicketId, options.barcodeFile)
       await serialPort.writeAsync(serializedMessageString)
       await serialPort.drainAsync()
 
