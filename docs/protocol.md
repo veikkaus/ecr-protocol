@@ -2,10 +2,17 @@
 
 > [!IMPORTANT]
 > Changelog
-> * replaced [Instant Validations](#instant-validations) with [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation)
-> * added [Identified Instant Messages](#identified-instant-messages)
 >
-> If not otherwise indicated, [messages](#message-structures) apply to both protocol v1 and v2. In Elite, the protocol in use can be selected in settings. 
+> 18.9.2024
+>
+> - Added Millilotto to protocol and to example messages.
+>
+> Earlier
+>
+> - replaced [Instant Validations](#instant-validations) with [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation)
+> - added [Identified Instant Messages](#identified-instant-messages)
+>
+> If not otherwise indicated, [messages](#message-structures) apply to both protocol v1 and v2. In Elite, the protocol in use can be selected in settings.
 
 **Intended audience:**
 
@@ -14,7 +21,7 @@ Cash register system providers / developers
 **Contacts:**
 
 - Veikkaus’ Betting Terminal Development Team (email: `muu` at `veikkaus.fi`)
-- Tuomas Huuskonen (email: firstname dot lastname at `veikkaus.fi`)
+- Miia Tarvainen (email: firstname dot lastname at `veikkaus.fi`)
 - Esamatti Liuhala (email: firstname dot lastname at `veikkaus.fi`)
 
 ## Introduction
@@ -41,13 +48,13 @@ DE-9 cables will be used for data transfer.
 
 Serial port connectors mounted on terminal are male. Most serial port connectors mounted on cash registers are also male.
 
-Veikkaus´ Elite-S betting terminal connector is type D-9 female. PC end connector is usually D-9 female for serial port. Signal wires must ‘cross connected’. 
-Cable connections are: 
-D-9  D9 
-2 3 
-3 2 
-4 4 
-5 5 
+Veikkaus´ Elite-S betting terminal connector is type D-9 female. PC end connector is usually D-9 female for serial port. Signal wires must ‘cross connected’.
+Cable connections are:
+D-9 D9
+2 3
+3 2
+4 4
+5 5
 6 6
 
 ## Communication Protocol
@@ -96,10 +103,10 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 ### Wager Sales, Cashing (Validations), Refunds, Cancellations
 
 - **RecId** (length: 2) — Record type identifier
-    - `02`: Sell wager
-    - `03`: Cancel wager
-    - `04`: Cash or refund
-    - `05`: Sell shared ticket wager
+  - `02`: Sell wager
+  - `03`: Cancel wager
+  - `04`: Cash or refund
+  - `05`: Sell shared ticket wager
 - **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
 - **GameType** (length: 2) — Game type identifier _(see [Field Values](#field-values))_
 - **GameIndex** (length: 2) — Game index identifier _(see [Field Values](#field-values))_
@@ -117,11 +124,10 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 >
 > Replaced by [Identified and Unidentified Instant Validation](#identified-and-unidentified-instant-validation) in Protocol v2
 
-
 - **RecId** (length: 2) — Record type identifier
   - `08`: Instant validation
 - **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
-- **InstantGame** (length: 3) — Instant game number (first 3 digits of the barcode on the ticket) 
+- **InstantGame** (length: 3) — Instant game number (first 3 digits of the barcode on the ticket)
 - **TransAmount** (length: 10) — Transaction amount _(see [Common Formats](#common-formats))_
 
 ### Instant Activations
@@ -129,13 +135,13 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - **RecId** (length: 2) — Record type identifier
   - `09`: Instant activation
 - **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
-- **InstantGame** (length: 3) — Instant game number (first 3 digits of the barcode on the ticket) 
+- **InstantGame** (length: 3) — Instant game number (first 3 digits of the barcode on the ticket)
 - **PackNumber** (length: 7) — Instant pack number (next 7 digits following game number in the barcode)
 
 ### Emptying Shopping Cart (“End Session and Transfer Transactions to Cash Register”)
 
 - **RecId** (length: 2) — Record type identifier
-    - `10`: Customer session end
+  - `10`: Customer session end
 - **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
 - **TotalAmount** (length: 10) — Customer session balance _(see [Common Formats](#common-formats))_
 - **NumTrans** (length: 4) — Number of transactions (zero-padded, e.g. `0004`)
@@ -163,6 +169,7 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - `31`: Synttärit
 - `33`: TOTO (Horse Games)
 - `34`: Vikinglotto
+- `35`: Millilotto
 
 #### Game Indices
 
@@ -191,11 +198,11 @@ Separate customer ticket is printed for each identified instant cancel and valid
 > Protocol v2
 
 - **RecId** (length: 2) — Record type identifier
- - `11`: Instant session
+- `11`: Instant session
 - **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
 - **NumTrans** (length: 4) — The number of sell and cancel transactions in a session (zero-padded, e.g. `0004`)
 - **TotalAmount** (length: 10) — The sum of sell (positive) and cancel (negative) amounts in a session _(see [Common Formats](#common-formats))_
-- **SessionID** (length: 28) — Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101") 
+- **SessionID** (length: 28) — Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101")
 
 ### Identified Instant Sell
 
@@ -203,7 +210,7 @@ Separate customer ticket is printed for each identified instant cancel and valid
 > Protocol v2
 
 - **RecId** (length: 2) — Record type identifier
-  - `12`: Identified instant sell  
+  - `12`: Identified instant sell
 - **SessionID** (length: 28) - Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101")
 - **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
 - **InstantEAN** (length: 13) - Instant product EAN
@@ -215,7 +222,7 @@ Separate customer ticket is printed for each identified instant cancel and valid
 > [!NOTE]
 > Protocol v2
 
-- **RecId** (length: 2) — Record type identifier  
+- **RecId** (length: 2) — Record type identifier
   - `13`: Identified instant cancel
 - **SessionID** (length: 28) - Session identifier; the barcode data of the associated instant session ticket (prefixed with "90101")
 - **TransTime** (length: 6) — Transaction time _(see [Common Formats](#common-formats))_
