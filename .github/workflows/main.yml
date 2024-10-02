@@ -14,7 +14,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-      - run: npm ci
+      - run: cd oiva && npm ci
       - name: test
         shell: 'script -q -e -c "bash {0}"' # https://github.com/gfx/example-github-actions-with-tty
-        run: npm test
+        run: cd oiva && npm test
