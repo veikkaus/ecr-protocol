@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "canvas": "2.11.2",
-    "commander": "11.1.0",
-    "jsbarcode": "3.11.5",
-    "node-fzf": "0.11.0",
+    "commander": "12.1.0",
+    "jsbarcode": "3.11.6",
+    "node-fzf": "0.13.1",
     "serialport": "12.0.0"
   },
   "devDependencies": {
