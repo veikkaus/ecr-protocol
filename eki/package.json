@@ -1,0 +1,25 @@
+{
+  "name": "veikkaus-eki-simulator",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "jest .",
+    "start": "node --no-warnings=ExperimentalWarning --loader ts-node/esm ./eki-simulator.ts"
+  },
+  "bin": {
+    "eki": "./eki-simulator.mts"
+  },
+  "dependencies": {
+    "@types/qrcode": "^1.5.5",
+    "@types/luxon": "3.4.2",
+    "commander": "12.1.0",
+    "serialport": "12.0.0",
+    "ts-node": "10.9.2",
+    "luxon": "3.4.2",
+    "qrcode": "1.5.4",
+    "bwip-js": "4.5.1"
+  },
+  "devDependencies": {
+    "jest": "29.7.0"
+  }
+}
