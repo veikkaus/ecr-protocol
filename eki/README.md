@@ -51,7 +51,7 @@ Replace `<serial-port-path>` with the actual path of your serial port. You can f
 
 - -p, --path <PATH>: The path of the target serial port. If omitted, the path specified in the config.json file will be used.
 - -s, --static-data: Use static TransTime and TicketId in all messages.
-- -q, --qr-code: Create QR-code PNG file for sell, cancel and cash message(s).
+- -b, --barcode: Create QR-code or barcode PNG file for sell, cancel and cash message(s).
 
 ### Examples:
 
@@ -64,5 +64,5 @@ Replace `<serial-port-path>` with the actual path of your serial port. You can f
 #### Send messages with static data:
 `npm run send scratchcard-sell-lotto-1 scratchcard-euro-cash -- -s`
 
-#### Send messages and create QR-codes:
-`npm run send scratchcard-sell-lotto-1 scratchcard-euro-cash -- -q`
+#### Send messages and create barcodes:
+`npm run send scratchcard-sell-lotto-1 scratchcard-euro-cash -- -b`
