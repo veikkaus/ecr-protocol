@@ -1,0 +1,23 @@
+include:
+  - project: 'MUU/muuni'
+    ref: master
+    file:
+      - '/gitlab/templates/shared.yml'
+  - project: 'MUU/muuni'
+    ref: master
+    file:
+      - '/gitlab/templates/kaniko-build.yml'
+
+stages:
+  - test
+
+tests:
+  extends: .base-image
+  tags:
+    - gitlab-runner
+  stage: test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == "main" 
+  script:
+  - cd eki && npm ci && npm test
