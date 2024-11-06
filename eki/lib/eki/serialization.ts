@@ -46,8 +46,7 @@ export function serializedGenericMessage(message: GenericMessage, staticData: bo
     case RecId.ScratchcardActivation:
       return serialize(message, staticData, ticketId, messageIndex)
     default:
-      console.error(`Invalid recordId ${message.recId}`)
-      return ''
+      throw new Error(`Invalid recordId ${message.recId}`)
   }
 }
 
