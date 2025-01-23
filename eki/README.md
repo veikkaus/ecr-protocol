@@ -24,28 +24,28 @@ Create a config.json file in the root directory of the project with the followin
 
 Replace `<serial-port-path>` with the actual path of your serial port. You can find the available serial ports by running the following command:
 
-`npm run list-ports`
+`npm start list-ports`
 
 
 ### Commands
 
 #### List available test messages
-`npm run list-all-messages`
+`npm start list-all-messages`
 
 #### List available sell messages
-`npm run list-sell-messages`
+`npm start list-sell-messages`
 
 #### List available cancel messages
-`npm run list-cancel-messages`
+`npm start list-cancel-messages`
 
 #### List available cash messages
-`npm run list-cash-messages`
+`npm start list-cash-messages`
 
 #### List available scratchcard activation messages
-`npm run list-scratchcard-activation-messages`
+`npm start list-scratchcard-activation-messages`
 
 #### Send message(s) to serial port
-`npm run send <messageName1> <messageName2> ...`
+`npm start send <messageName1> <messageName2> ...`
 
 ### Options:
 
@@ -56,13 +56,13 @@ Replace `<serial-port-path>` with the actual path of your serial port. You can f
 ### Examples:
 
 #### Send a single message:
-`npm run send scratchcard-euro-sell`
+`npm start send scratchcard-euro-sell`
 
 #### Send multiple messages:
-`npm run send scratchcard-sell-lotto-1 scratchcard-euro-cash`
+`npm start send scratchcard-sell-lotto-1 scratchcard-euro-cash`
 
 #### Send messages with static data:
-`npm run send scratchcard-sell-lotto-1 scratchcard-euro-cash -- -s`
+`npm start send scratchcard-sell-lotto-1 scratchcard-euro-cash -- -s`
 
 #### Send messages and create barcodes:
-`npm run send scratchcard-sell-lotto-1 scratchcard-euro-cash -- -b`
+`npm start send scratchcard-sell-lotto-1 scratchcard-euro-cash -- -b`
