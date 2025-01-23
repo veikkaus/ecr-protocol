@@ -51,8 +51,14 @@ Version number only increases for breaking changes to previously published RecId
 #### TicketId
 
 Length 28-50 alphanumeric.  
+
+##### Wager or scratchcard sales
 Starts with 90100 (scratchcard) or 90199 (game ticket). Prefix should not be used to identify game type, but instead use the GameType 16 for scratch cards and other GameTypes for specific games.  
-Example: `9010012345678901234567890123` or `9019903352000000CB15B6263B42453AB4B9B875ADE03DA8XX`
+Example: `9010012345678901234567890123` or `90199AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA`
+
+##### Redeem or cancel ticket
+Is the unique serial number of redeem or cancellation receipt. Starts 90199 (game ticket). Length 50 alphanumeric. 
+Example: `90199BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB`
 
 #### Timestamps
 
@@ -78,7 +84,7 @@ Example: `+103456` for 1034,56 €. That is: One thousand 34 euros 56 cents.
 -  **TransTime**  (length: 6) — Transaction time (Common Formats: Timestamps)  
 - **GameType**  (length: 2) — Game type identifier (Field Values: Game Types)  
 - **TransAmount**  (length: max 10) — Transaction amount (Common Formats: Currency Amounts)  
--  **TicketId** (length: 28-50) — Serial number (Common Formats: TicketId)
+-  **TicketId** (length: 28-50) — Ticket or receipt serial number (Common Formats: TicketId)
 -  **EAN** (length: 0 or 13) — Scratchcard EAN _(only in scratchcards, otherwise empty)_
 
 ### Emptying Shopping Cart (“End Session and Transfer Transactions to Cash Register”)
@@ -103,13 +109,15 @@ All messages in the same customer session are sent  at once when salesperson tap
 3.  Lotto cancel (1 €)
 4.  Eurojackpot cash (5 €)
 5.  Scratchcard (Casino 10 €) sell
+6.  Scratchcard (Casino 10 €) cancel
 
-    :v03;02;123327;01;+100;90199123456789012345678901234567890ABCDEFGHIJKLMN1;;\r\n  
-    :v03;02;123328;28;+1500;90199123456789012345678901234567890ABCDEFGHIJKLMN2;;\r\n  
-    :v03;03;123329;01;-100;90199123456789012345678901234567890ABCDEFGHIJKLMN3;;\r\n  
-    :v03;04;123329;22;-500;90199123456789012345678901234567890ABCDEFGHIJKLMN4;;\r\n  
+    :v03;02;123327;01;+100;90199AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA;;\r\n  
+    :v03;02;123328;28;+1500;90199BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB;;\r\n  
+    :v03;03;123329;01;-100;90199CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC;;\r\n  
+    :v03;04;123329;22;-500;90199DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD;;\r\n  
     :v03;02;123330;16;+1000;9010012345678901234567890123;6417326002122;\r\n  
-    :v03;10;123331;+2600;-100;-500;+2000;5;\r\n
+    :v03;03;123331;16;-1000;90199EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE;6417326002122;\r\n  
+    :v03;10;123332;+2600;-1100;-500;+1000;6;\r\n
 
 ### Field Values
 
