@@ -119,6 +119,9 @@ All messages in the same customer session are sent  at once when salesperson tap
     :v03;03;123331;16;-1000;90199EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE;6417326002122;\r\n  
     :v03;10;123332;+2600;-1100;-500;+1000;6;\r\n
 
+If customer session only contains non monetary transactions, customer session always ens with RecId 10 message with 0 transactions.
+    :v03;10;073840;+0;+0;+0;+0;0;
+
 ### Field Values
 
 #### Game Types (Updated: 27.9.2024)

@@ -4,7 +4,7 @@ import { color } from './lib/colors'
 import { dataPresentation, openSerialport, writeAndDrainToSerialPort } from './lib/eki/serialport'
 import { cancelMessages, cashMessages, ekiMessages, getMessageString, sellMessages } from './lib/eki/messages'
 import fs from 'fs'
-import { serializedGenericMessage } from './lib/eki/serialization'
+import { serializedEmptyCustomerSessionEndMessage, serializedGenericMessage } from './lib/eki/serialization'
 import { timeout } from './lib/time'
 import { STATIC_TRANS_TIME } from './lib/eki/messages/transTime'
 import { EkiGenericMessage } from './lib/eki/messages/messageTypes'
@@ -71,8 +71,9 @@ program
   .addOption(new Option('-p, --path [PATH]', 'The path of the target serial port (see the `list-ports` command)' ))
   .addOption(new Option('-s, --static-data', `Static TransTime (${STATIC_TRANS_TIME}) and TicketId in all messages` ))
   .addOption(new Option('-b, --barcode', 'Create QR-code or barcode PNG file for sell, cancel and cash message(s)'))
+  .addOption(new Option('-e, --empty-session', 'Send empty customer session end message, messageNames must be empty'))
   .action(async (messageNames, options) => {
-    const messages = getMessageString(messageNames, options.staticData ?? false, options.barcode ?? false)
+    const messages = options.emptySession && messageNames.length === 0 ? serializedEmptyCustomerSessionEndMessage(options.staticData ?? false) : getMessageString(messageNames, options.staticData ?? false, options.barcode ?? false)
 
     const serialPort = await openSerialport(options.path ?? data.path)
 
