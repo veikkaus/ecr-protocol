@@ -208,7 +208,7 @@ export const drawSellMessages: EkiGenericMessage[] = [
     }
   },
   {
-    name: 'millil-sell-3',
+    name: 'milli-sell-3',
     description: 'Milli wager sale 3',
     payloadObject: {
       recId: RecId.Sell,
