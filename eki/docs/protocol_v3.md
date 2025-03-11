@@ -102,7 +102,7 @@ Example: `+103456` for 1034,56 €. That is: One thousand 34 euros 56 cents.
 
 ### Example customer session
 
-All messages in the same customer session are sent  at once when salesperson taps "Next customer" button. Customer session always ends with RecId 10 message containing total amounts of customer session.
+All messages in the same customer session are sent at once when salesperson taps "Next customer" button. Customer session always ends with RecId 10 message containing total amounts of customer session.
 
 1.  Lotto sell (1 €)
 2.  Pitkäveto sell (15 €)
@@ -119,7 +119,7 @@ All messages in the same customer session are sent  at once when salesperson tap
     :v03;03;123331;16;-1000;90199EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE;6417326002122;\r\n  
     :v03;10;123332;+2600;-1100;-500;+1000;6;\r\n
 
-If customer session only contains non monetary transactions, customer session always ens with RecId 10 message with 0 transactions.
+If customer session only contains non monetary transactions, customer session always ends with RecId 10 message with 0 transactions.
     :v03;10;073840;+0;+0;+0;+0;0;
 
 ### Field Values
