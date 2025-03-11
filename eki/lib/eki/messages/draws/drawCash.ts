@@ -184,11 +184,11 @@ export const drawCashMessages: EkiGenericMessage[] = [
       }
     },
     {
-      name: 'millilotto-cash-1',
-      description: 'Millilotto cash 1',
+      name: 'milli-cash-1',
+      description: 'Milli cash 1',
       payloadObject: {
         recId: RecId.Cash,
-        gameType: GameType.Millilotto,
+        gameType: GameType.Milli,
         transTime: STATIC_TRANS_TIME,
         transAmount: -5_50,
         ticketId: STATIC_TICKET_ID,
@@ -196,11 +196,11 @@ export const drawCashMessages: EkiGenericMessage[] = [
       }
     },
     {
-      name: 'millilotto-cash-2',
-      description: 'Millilotto cash 2',
+      name: 'milli-cash-2',
+      description: 'Milli cash 2',
       payloadObject: {
         recId: RecId.Cash,
-        gameType: GameType.Millilotto,
+        gameType: GameType.Milli,
         transTime: STATIC_TRANS_TIME,
         transAmount: -15_00,
         ticketId: STATIC_TICKET_ID,
@@ -208,11 +208,11 @@ export const drawCashMessages: EkiGenericMessage[] = [
       }
     },
     {
-      name: 'millilotto-cash-3',
-      description: 'Millilotto cash 3',
+      name: 'milli-cash-3',
+      description: 'Milli cash 3',
       payloadObject: {
         recId: RecId.Cash,
-        gameType: GameType.Millilotto,
+        gameType: GameType.Milli,
         transTime: STATIC_TRANS_TIME,
         transAmount: -50_00,
         ticketId: STATIC_TICKET_ID,

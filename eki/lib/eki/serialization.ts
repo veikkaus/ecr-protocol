@@ -1,7 +1,7 @@
 import { createBarcode } from "./barcode"
 import { CustomerSessionEndMessage, GameType, GenericMessage, PROTOCOL_VERSION, RecId } from "./messages/messageTypes"
 import { generateGenericTicketId, generateScratchcardTicketId } from "./messages/ticketId"
-import { getTransTime } from "./messages/transTime"
+import { getTransTime, STATIC_TRANS_TIME } from "./messages/transTime"
 import { createQrCode } from "./qrCode"
 
 function serializedEkiMessageFromComponents(...components: any[]) {
@@ -62,3 +62,7 @@ export function serializedCustomerSessionEndMessage(message: CustomerSessionEndM
     message.numTrans
   )
 }
+
+export function serializedEmptyCustomerSessionEndMessage(staticData: boolean) {
+  return serializedCustomerSessionEndMessage({transTime: STATIC_TRANS_TIME, sellAmount: 0, cancelAmount: 0, cashAmount: 0, totalAmount: 0, numTrans: 0}, staticData)
+} 

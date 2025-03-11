@@ -102,7 +102,7 @@ Example: `+103456` for 1034,56 €. That is: One thousand 34 euros 56 cents.
 
 ### Example customer session
 
-All messages in the same customer session are sent  at once when salesperson taps "Next customer" button. Customer session always ends with RecId 10 message containing total amounts of customer session.
+All messages in the same customer session are sent at once when salesperson taps "Next customer" button. Customer session always ends with RecId 10 message containing total amounts of customer session.
 
 1.  Lotto sell (1 €)
 2.  Pitkäveto sell (15 €)
@@ -119,9 +119,12 @@ All messages in the same customer session are sent  at once when salesperson tap
     :v03;03;123331;16;-1000;90199EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE;6417326002122;\r\n  
     :v03;10;123332;+2600;-1100;-500;+1000;6;\r\n
 
+If customer session only contains non monetary transactions, customer session always ends with RecId 10 message with 0 transactions.
+    :v03;10;073840;+0;+0;+0;+0;0;
+
 ### Field Values
 
-#### Game Types (Updated: 27.9.2024)
+#### Game Types (Updated: 11.3.2025)
 
 New GameTypes can be added as the product range increases. New GameTypes are communicated to partners in advance. The integrating system must be able to handle GameTypes 00-99.  
   
@@ -150,4 +153,4 @@ GameType range 00-99
 | 31       | Synttärit               |
 | 33       | Toto                    |
 | 34       | Vikinglotto             |
-| 35       | Millilotto              |
+| 35       | Milli                   |

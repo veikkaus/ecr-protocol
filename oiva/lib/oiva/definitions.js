@@ -45,7 +45,7 @@ const gameType = {
   Pahviarpa: '16',
   KaikkiTaiEiMitaan: '30',
   Toto: '33',
-  Millilotto: '35'
+  Milli: '35'
 }
 
 /**

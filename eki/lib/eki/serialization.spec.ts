@@ -2,6 +2,7 @@ import { expect, it, describe } from '@jest/globals'
 import {
   serializedGenericMessage,
   serializedCustomerSessionEndMessage,
+  serializedEmptyCustomerSessionEndMessage,
 } from './serialization'
 import {
   CustomerSessionEndMessage,
@@ -143,6 +144,11 @@ describe('serialization', () => {
       const expected =
         ':v03;10;120103;+100000;-20000;+80000;+80000;3;\r\n'
       expect(serializedCustomerSessionEndMessage(message, true)).toBe(expected)
+    })
+
+    it('should serialize a empty customer session end message correctly', () => {
+      const expected = ':v03;10;120103;+0;+0;+0;+0;0;\r\n'
+      expect(serializedEmptyCustomerSessionEndMessage(true)).toBe(expected)
     })
   })
 })
