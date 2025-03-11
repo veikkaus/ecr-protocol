@@ -1,5 +1,5 @@
 const fzf = require('node-fzf')
-const { aonMessages, lottoMessages, millilottoMessages } = require('./draw')
+const { aonMessages, lottoMessages, milliMessages } = require('./draw')
 const { totalMessage } = require('./elite')
 const { instantMessages, maybeInstantSessionSummary } = require('./instant')
 const {
@@ -20,7 +20,7 @@ function oivaMessages(protocol) {
   return [
     ...totoMessages,
     ...lottoMessages,
-    ...millilottoMessages,
+    ...milliMessages,
     ...aonMessages,
     ...ebetMessages,
     ...scoreMessages,

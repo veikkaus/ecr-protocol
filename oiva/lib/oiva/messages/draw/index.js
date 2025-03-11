@@ -1,9 +1,9 @@
 const { aonMessages } = require('./aon')
 const { lottoMessages } = require('./lotto')
-const { millilottoMessages } = require('./millilotto')
+const { milliMessages } = require('./milli')
 
 module.exports = {
   aonMessages,
   lottoMessages,
-  millilottoMessages
+  milliMessages
 }

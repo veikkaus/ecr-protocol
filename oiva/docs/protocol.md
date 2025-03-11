@@ -5,7 +5,7 @@
 >
 > 18.9.2024
 >
-> - Added Millilotto to protocol and to example messages.
+> - Added Milli to protocol and to example messages.
 >
 > Earlier
 >
@@ -169,7 +169,7 @@ Example: `+000107.08` for 107 Euros and 8 cents.
 - `31`: Synttärit
 - `33`: TOTO (Horse Games)
 - `34`: Vikinglotto
-- `35`: Millilotto
+- `35`: Milli
 
 #### Game Indices
 

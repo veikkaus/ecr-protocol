@@ -39,7 +39,7 @@ function ticketSerialToBarcodeData(ticketSerial, typeOfGame) {
     case gameType.Toto:
       return totoTicketSerialToITF(ticketSerial)
     case gameType.Lotto:
-    case gameType.Millilotto:
+    case gameType.Milli:
     case gameType.KaikkiTaiEiMitaan:
     case gameType.Ebet:
     case gameType.MultiScore:

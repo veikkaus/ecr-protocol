@@ -184,11 +184,11 @@ export const drawSellMessages: EkiGenericMessage[] = [
     }
   },
   {
-    name: 'millilotto-sell-1',
-    description: 'Millilotto wager sale',
+    name: 'milli-sell-1',
+    description: 'Milli wager sale',
     payloadObject: {
       recId: RecId.Sell,
-      gameType: GameType.Millilotto,
+      gameType: GameType.Milli,
       transTime: STATIC_TRANS_TIME,
       transAmount: 1_03,
       ticketId: STATIC_TICKET_ID,
@@ -196,11 +196,11 @@ export const drawSellMessages: EkiGenericMessage[] = [
     }
   },
   {
-    name: 'millilotto-sell-2',
-    description: 'Millilotto wager sale 2',
+    name: 'milli-sell-2',
+    description: 'Milli wager sale 2',
     payloadObject: {
       recId: RecId.Sell,
-      gameType: GameType.Millilotto,
+      gameType: GameType.Milli,
       transTime: STATIC_TRANS_TIME,
       transAmount: 2_50,
       ticketId: STATIC_TICKET_ID,
@@ -208,11 +208,11 @@ export const drawSellMessages: EkiGenericMessage[] = [
     }
   },
   {
-    name: 'millilotto-sell-3',
-    description: 'Millilotto wager sale 3',
+    name: 'millil-sell-3',
+    description: 'Milli wager sale 3',
     payloadObject: {
       recId: RecId.Sell,
-      gameType: GameType.Millilotto,
+      gameType: GameType.Milli,
       transTime: STATIC_TRANS_TIME,
       transAmount: 10_00,
       ticketId: STATIC_TICKET_ID,

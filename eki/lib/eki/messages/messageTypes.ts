@@ -59,7 +59,7 @@ export enum GameType {
   Synttarit = '31',
   Toto = '33',
   Vikinglotto = '34',
-  Millilotto = '35'
+  Milli = '35'
 }
 
 export enum ScratchcardEAN {

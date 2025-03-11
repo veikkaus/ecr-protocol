@@ -169,33 +169,33 @@ export const drawCancelMessages: EkiGenericMessage[] = [
       ean: ''
     }
   }, {
-    name: 'millilotto-cancel-1',
-    description: 'Millilotto wager cancellation 1',
+    name: 'milli-cancel-1',
+    description: 'Milli wager cancellation 1',
     payloadObject: { 
       recId: RecId.Cancel,
-      gameType: GameType.Millilotto,
+      gameType: GameType.Milli,
       transTime: STATIC_TRANS_TIME,
       transAmount: -1_03,
       ticketId: STATIC_TICKET_ID,
       ean: ''
     }
   }, {
-    name: 'millilotto-cancel-2',
-    description: 'Millilotto wager cancellation 2',
+    name: 'milli-cancel-2',
+    description: 'Milli wager cancellation 2',
     payloadObject: { 
       recId: RecId.Cancel,
-      gameType: GameType.Millilotto,
+      gameType: GameType.Milli,
       transTime: STATIC_TRANS_TIME,
       transAmount: -2_50,
       ticketId: STATIC_TICKET_ID,
       ean: ''
     }
   }, {
-    name: 'millilotto-cancel-3',
-    description: 'Millilotto wager cancellation 3',
+    name: 'milli-cancel-3',
+    description: 'Milli wager cancellation 3',
     payloadObject: { 
       recId: RecId.Cancel,
-      gameType: GameType.Millilotto,
+      gameType: GameType.Milli,
       transTime: STATIC_TRANS_TIME,
       transAmount: -10_00,
       ticketId: STATIC_TICKET_ID,

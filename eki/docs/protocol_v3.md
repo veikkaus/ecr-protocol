@@ -124,7 +124,7 @@ If customer session only contains non monetary transactions, customer session al
 
 ### Field Values
 
-#### Game Types (Updated: 27.9.2024)
+#### Game Types (Updated: 11.3.2025)
 
 New GameTypes can be added as the product range increases. New GameTypes are communicated to partners in advance. The integrating system must be able to handle GameTypes 00-99.  
   
@@ -153,4 +153,4 @@ GameType range 00-99
 | 31       | Synttärit               |
 | 33       | Toto                    |
 | 34       | Vikinglotto             |
-| 35       | Millilotto              |
+| 35       | Milli                   |
