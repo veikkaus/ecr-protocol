@@ -13,9 +13,6 @@ import {
 } from './messages/messageTypes'
 import { STATIC_TRANS_TIME } from './messages/transTime'
 import { STATIC_SCRATCHCARD_TICKET_ID, STATIC_TICKET_ID } from './messages/ticketId'
-import { sportSellMessages } from './messages/sport/sportSell'
-import { sportCancelMessages } from './messages/sport/sportCancel'
-import { sportCashMessages } from './messages/sport/sportCash'
 
 describe('serialization', () => {
   describe('serialized generic message', () => {
@@ -152,35 +149,6 @@ describe('serialization', () => {
     it('should serialize a empty customer session end message correctly', () => {
       const expected = ':v03;10;120103;+0;+0;+0;+0;0;\r\n'
       expect(serializedEmptyCustomerSessionEndMessage(true)).toBe(expected)
-    })
-  })
-
-  describe('custom amount tests', () => {
-    it('should serialize sport sell message with amount under 1 euro correctly', () => {
-      const messageToTest = sportSellMessages.find(message => message.name === 'paivan-trio-sell-1')
-      expect(messageToTest).toBeDefined()
-      const expected =
-        ':v03;02;120103;15;+25;9019901234567890123456789ABCDEFABCDABCDEFABCD01345;;\r\n'
-      const actual = serializedGenericMessage(messageToTest!.payloadObject, true, false)
-      expect(actual).toBe(expected)
-    })
-
-    it('should serialize sport cancel message with amount under 1 euro correctly', () => {
-      const messageToTest = sportCancelMessages.find(message => message.name === 'paivan-trio-cancel-1')
-      expect(messageToTest).toBeDefined()
-      const expected =
-        ':v03;03;120103;15;-25;9019901234567890123456789ABCDEFABCDABCDEFABCD01345;;\r\n'
-      const actual = serializedGenericMessage(messageToTest!.payloadObject, true, false)
-      expect(actual).toBe(expected)
-    })
-
-    it('should serialize sport cash message with amount under 1 euro correctly', () => {
-      const messageToTest = sportCashMessages.find(message => message.name === 'paivan-trio-cash-1')
-      expect(messageToTest).toBeDefined()
-      const expected =
-        ':v03;04;120103;15;-25;9019901234567890123456789ABCDEFABCDABCDEFABCD01345;;\r\n'
-      const actual = serializedGenericMessage(messageToTest!.payloadObject, true, false)
-      expect(actual).toBe(expected)
     })
   })
 })

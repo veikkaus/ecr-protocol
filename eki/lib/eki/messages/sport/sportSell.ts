@@ -262,7 +262,7 @@ export const sportSellMessages: EkiGenericMessage[] = [
       recId: RecId.Sell,
       gameType: GameType.PaivanTrio,
       transTime: STATIC_TRANS_TIME,
-      transAmount: 25,
+      transAmount: 1_03,
       ticketId: STATIC_TICKET_ID,
       ean: ''
     }
@@ -287,6 +287,18 @@ export const sportSellMessages: EkiGenericMessage[] = [
       gameType: GameType.PaivanTrio,
       transTime: STATIC_TRANS_TIME,
       transAmount: 10_00,
+      ticketId: STATIC_TICKET_ID,
+      ean: ''
+    }
+  },
+  {
+    name: 'paivan-trio-sell-4',
+    description: 'Päivän trio wager sale 4',
+    payloadObject: {
+      recId: RecId.Sell,
+      gameType: GameType.PaivanTrio,
+      transTime: STATIC_TRANS_TIME,
+      transAmount: 25,
       ticketId: STATIC_TICKET_ID,
       ean: ''
     }
