@@ -262,7 +262,7 @@ export const sportSellMessages: EkiGenericMessage[] = [
       recId: RecId.Sell,
       gameType: GameType.PaivanTrio,
       transTime: STATIC_TRANS_TIME,
-      transAmount: 1_03,
+      transAmount: 25,
       ticketId: STATIC_TICKET_ID,
       ean: ''
     }
