@@ -292,6 +292,18 @@ export const sportCancelMessages: EkiGenericMessage[] = [
     }
   },
   {
+    name: 'paivan-trio-cancel-4',
+    description: 'Päivän trio wager cancel 4',
+    payloadObject: {
+      recId: RecId.Cancel,
+      gameType: GameType.PaivanTrio,
+      transTime: STATIC_TRANS_TIME,
+      transAmount: -25,
+      ticketId: STATIC_TICKET_ID,
+      ean: ''
+    }
+  },
+  {
     name: 'pitkaveto-cancel-1',
     description: 'Pitkäveto wager cancel 1',
     payloadObject: {

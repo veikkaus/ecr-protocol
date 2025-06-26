@@ -292,6 +292,18 @@ export const sportCashMessages: EkiGenericMessage[] = [
     }
   },
   {
+    name: 'paivan-trio-cash-4',
+    description: 'Päivän trio cash 4',
+    payloadObject: {
+      recId: RecId.Cash,
+      gameType: GameType.PaivanTrio,
+      transTime: STATIC_TRANS_TIME,
+      transAmount: -25,
+      ticketId: STATIC_TICKET_ID,
+      ean: ''
+    }
+  },
+  {
     name: 'pitkaveto-cash-1',
     description: 'Pitkäveto cash 1',
     payloadObject: {
