@@ -1,3 +1,11 @@
+# Veikkaus’ Elite-S Betting Terminal Transaction Interface for Cash Registers
+
+This repository provides resources for cash register system providers and developers integrating with Veikkaus Elite-S betting terminals.
+
+## Protocol
+
+Find the protocol specification of the interface between cash registers and Elite-S terminals [here](docs/protocol_v3.md)
+
 # EKI v3 simulator
 
 Test utility for Veikkaus Elite-S betting terminal’s transaction interface for cash registers.
