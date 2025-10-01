@@ -18,4 +18,4 @@ The Veikkaus Elite-S betting terminal provides the transaction interface for thi
 ## Resources
 
 Protocol specification and tools are available here:  
-[Link to protocol specification](/ecr-protocol/blob/main/eki/README.md)
+[Link to protocol specification](eki/docs/protocol_v3.md)
