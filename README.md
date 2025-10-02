@@ -12,8 +12,7 @@ The Veikkaus Elite-S betting terminal provides the transaction interface for thi
 ## Contacts
 
 - **Veikkaus Betting Terminal Development Team** – muu@veikkaus.fi  
-- **Miia Tarvainen** – firstname.lastname@veikkaus.fi  
-- **Esamatti Liuhala** – firstname.lastname@veikkaus.fi  
+
 
 ## Resources
 
